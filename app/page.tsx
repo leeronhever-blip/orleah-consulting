@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { Building2, HeartPulse, ShoppingBag, Users, ClipboardCheck, BarChart3, MessageCircle, Mail, Phone, MapPin, CheckCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -78,16 +77,19 @@ function HomePage({ setActivePage }: { setActivePage: (page: string) => void }) 
   return (
     <section>
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+        <div>
           <div className="mb-4 inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-medium text-[#06294A]">
             Strategy • People • Culture • Results
           </div>
+
           <h1 className="max-w-4xl text-5xl font-semibold leading-tight tracking-tight text-[#06294A] md:text-6xl">
             Operational clarity for organizations ready to grow with discipline.
           </h1>
+
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
             Orleah Consulting Group, LLC helps healthcare providers, consumer goods companies, and small businesses strengthen operations, improve oversight, and build workplace cultures that support lasting performance.
           </p>
+
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button onClick={() => setActivePage("Contact Us")} className="rounded-full bg-[#06294A] px-6 py-6 hover:bg-[#041F38]">
               Schedule a Consultation
@@ -96,27 +98,30 @@ function HomePage({ setActivePage }: { setActivePage: (page: string) => void }) 
               Explore Our Methods
             </Button>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.55 }}>
-        <Card className="overflow-hidden rounded-[2rem] border-0 bg-white shadow-2xl">
-  <CardContent className="flex items-center justify-center p-8">
-    <img
-      src="/logo.png"
-      alt="Orleah Consulting Group Logo"
-      className="w-full max-w-md rounded-2xl"
-    />
-  </CardContent>
-</Card>
-        </motion.div>
+        <div>
+          <Card className="overflow-hidden rounded-[2rem] border-0 bg-white shadow-2xl">
+            <CardContent className="flex items-center justify-center p-8">
+              <img
+                src="/logo.png"
+                alt="Orleah Consulting Group Logo"
+                className="w-full max-w-md rounded-2xl"
+              />
+            </CardContent>
+          </Card>
+        </div>
       </div>
 
       <div className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10 max-w-3xl">
             <h2 className="text-3xl font-semibold">What we help improve</h2>
-            <p className="mt-3 text-slate-600">Practical consulting support for owners, executives, and leadership teams that need better structure, accountability, and follow-through.</p>
+            <p className="mt-3 text-slate-600">
+              Practical consulting support for owners, executives, and leadership teams that need better structure, accountability, and follow-through.
+            </p>
           </div>
+
           <div className="grid gap-5 md:grid-cols-3">
             <ServiceCard icon={<ClipboardCheck />} title="Operational Management" text="Build clearer workflows, stronger routines, and measurable expectations across departments." />
             <ServiceCard icon={<BarChart3 />} title="Oversight & Accountability" text="Create review systems, leadership dashboards, and follow-up practices that reduce drift." />
@@ -127,7 +132,6 @@ function HomePage({ setActivePage }: { setActivePage: (page: string) => void }) 
     </section>
   );
 }
-
 function AboutPage() {
   return (
     <PageShell eyebrow="About Us" title="A consulting group built around operations, people, and sustainable performance.">
@@ -276,19 +280,27 @@ function ContactPage() {
   );
 }
 
-function PageShell({ eyebrow, title, children }) {
+function PageShell({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <section className="mx-auto max-w-7xl px-6 py-16">
-      <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+      <div>
         <div className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#B8943D]">{eyebrow}</div>
         <h1 className="mb-10 max-w-4xl text-4xl font-semibold leading-tight tracking-tight md:text-5xl">{title}</h1>
         {children}
-      </motion.div>
+      </div>
     </section>
   );
 }
 
-function Feature({ icon, title }) {
+function Feature({ icon, title }: { icon: React.ReactElement<{ className?: string }>; title: string }) {
   return (
     <div className="flex items-center gap-3 rounded-2xl bg-white/10 p-4">
       {React.cloneElement(icon, { className: "h-5 w-5 text-amber-300" })}
@@ -297,7 +309,15 @@ function Feature({ icon, title }) {
   );
 }
 
-function ServiceCard({ icon, title, text }) {
+function ServiceCard({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactElement<{ className?: string }>;
+  title: string;
+  text: string;
+}) {
   return (
     <Card className="rounded-3xl border-0 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
       <CardContent className="p-7">
@@ -311,7 +331,13 @@ function ServiceCard({ icon, title, text }) {
   );
 }
 
-function Value({ title, text }) {
+function Value({
+  title,
+  text,
+}: {
+  title: string;
+  text: string;
+}) {
   return (
     <Card className="rounded-3xl border-0 shadow-sm">
       <CardContent className="flex gap-4 p-6">
@@ -325,7 +351,13 @@ function Value({ title, text }) {
   );
 }
 
-function ContactLine({ icon, text }) {
+function ContactLine({
+  icon,
+  text,
+}: {
+  icon: React.ReactElement<{ className?: string }>;
+  text: string;
+}) {
   return (
     <div className="flex items-center gap-3">
       {React.cloneElement(icon, { className: "h-5 w-5 text-amber-300" })}
@@ -334,7 +366,13 @@ function ContactLine({ icon, text }) {
   );
 }
 
-function InputPlaceholder({ label, tall }) {
+function InputPlaceholder({
+  label,
+  tall,
+}: {
+  label: string;
+  tall?: boolean;
+}) {
   return (
     <div>
       <label className="mb-2 block text-sm font-medium text-slate-700">{label}</label>
